@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="cash_flow_report_balance_currency" model="account.report.column">
+        <field name="name">Currency Balance</field>
+        <field name="expression_label">balance_currency</field>
+        <field name="figure_type">monetary</field>
+        <field name="report_id" ref="account_reports.cash_flow_report" />
+        <field name="sequence">2</field>
+    </record>
+
+    <record id="balance_sheet_report_balance_currency" model="account.report.column">
+        <field name="name">Currency Balance</field>
+        <field name="expression_label">balance_currency</field>
+        <field name="figure_type">monetary</field>
+        <field name="report_id" ref="account_reports.balance_sheet" />
+        <field name="sequence">2</field>
+    </record>
+
+    <record id="profit_and_loss_report_balance_currency" model="account.report.column">
+        <field name="name">Currency Balance</field>
+        <field name="expression_label">balance_currency</field>
+        <field name="figure_type">monetary</field>
+        <field name="report_id" ref="account_reports.profit_and_loss" />
+        <field name="sequence">2</field>
+    </record>
+
+    <record id="executive_summary_report_balance_currency" model="account.report.column">
+        <field name="name">Currency Balance</field>
+        <field name="expression_label">balance_currency</field>
+        <field name="figure_type">monetary</field>
+        <field name="report_id" ref="account_reports.executive_summary" />
+        <field name="sequence">2</field>
+    </record>
+
+    <!-- <record id="cash_flow_report_balance_currency" model="account.report.column">
+        <field name="name">Currency Balance</field>
+        <field name="expression_label">balance_currency</field>
+        <field name="figure_type">monetary</field>
+        <field name="report_id" ref="account_reports.cash_flow_report" />
+        <field name="sequence">2</field>
+    </record> -->
+
+    <record id="account_financial_report_liabilities_view0_balance_" model="account.report.expression">
+        <field name="label">balance_currency</field>
+        <field name="engine">aggregation</field>
+        <field name="formula">CL.balance + NL.balance</field>
+        <field name="green_on_positive" eval="False" />
+        <field name="report_line_id"
+            ref="account_reports.account_financial_report_liabilities_view0" />
+    </record>
+
+    <record id="account_financial_report_liabilities_view0_balance_1" model="account.report.expression">
+        <field name="label">balance_currency</field>
+        <field name="engine">aggregation</field>
+        <field name="formula">CL1.balance + CL2.balance</field>
+        <field name="green_on_positive" eval="False" />
+        <field name="report_line_id"
+            ref="account_reports.account_financial_report_current_liabilities0" />
+    </record>
+
+    <record id="account_financial_report_liabilities_view0_balance_2" model="account.report.expression">
+        <field name="label">balance_currency</field>
+        <field name="engine">domain</field>
+        <field name="formula"
+            eval="['|', ('account_id.account_type', 'in', ('liability_current', 'liability_credit_card')), '&amp;', ('account_id.account_type', '=', 'liability_payable'), ('account_id.non_trade', '=', True)]" />
+        <field name="subformula">-sum</field>
+        <field name="green_on_positive" eval="False" />
+        <field name="report_line_id"
+            ref="account_reports.account_financial_report_current_liabilities1" />
+    </record>
+
+    <record id="account_financial_report_liabilities_view0_balance_3" model="account.report.expression">
+        <field name="label">balance_currency</field>
+        <field name="engine">domain</field>
+        <field name="formula"
+            eval="[('account_id.account_type', '=', 'liability_payable'), ('account_id.non_trade', '=', False)]" />
+        <field name="subformula">-sum</field>
+        <field name="green_on_positive" eval="False" />
+        <field name="report_line_id"
+            ref="account_reports.account_financial_report_current_liabilities_payable" />
+    </record>
+
+    <record id="account_financial_report_liabilities_view0_balance_4" model="account.report.expression">
+        <field name="label">balance_currency</field>
+        <field name="engine">domain</field>
+        <field name="formula" eval="[('account_id.account_type', '=', 'liability_non_current')]" />
+        <field name="subformula">-sum</field>
+        <field name="report_line_id"
+            ref="account_reports.account_financial_report_non_current_liabilities0" />
+    </record>
+
+    <record id="account_financial_report_liabilities_view0_balance_5" model="account.report.expression">
+        <field name="label">balance_currency</field>
+        <field name="engine">aggregation</field>
+        <field name="formula">NEP.balance</field>
+        <field name="date_scope">from_fiscalyear</field>
+        <field name="subformula">cross_report</field>
+        <field name="report_line_id"
+            ref="account_reports.account_financial_current_year_earnings_line_1" />
+    </record>
+
+    <record id="account_financial_report_liabilities_view0_balance_6" model="account.report.expression">
+        <field name="label">balance_currency</field>
+        <field name="engine">domain</field>
+        <field name="formula" eval="[('account_id.account_type', '=', 'equity_unaffected')]" />
+        <field name="date_scope">from_fiscalyear</field>
+        <field name="subformula">-sum</field>
+        <field name="report_line_id"
+            ref="account_reports.account_financial_current_year_earnings_line_2" />
+    </record>
+
+    <!-- <record id="account_financial_report_liabilities_view0_balance_7" model="account.report.expression">
+        <field name="label">allocated_earnings</field>
+        <field name="engine">domain</field>
+        <field name="formula" eval="[('account_id.account_type', '=', 'equity_unaffected')]" />
+        <field name="subformula">-sum</field>
+        <field name="date_scope">from_beginning</field>
+        <field name="report_line_id"
+            ref="account_reports.account_financial_previous_year_earnings0" />
+    </record>
+
+    <record id="account_financial_report_liabilities_view0_balance_8" model="account.report.expression">
+        <field name="label">balance_domain</field>
+        <field name="engine">domain</field>
+        <field name="formula"
+            eval="[('account_id.account_type', 'in', ('income', 'income_other', 'expense_direct_cost', 'expense', 'expense_depreciation'))]" />
+        <field name="subformula">-sum</field>
+        <field name="date_scope">from_beginning</field>
+        <field name="report_line_id"
+            ref="account_reports.account_financial_previous_year_earnings0" />
+    </record> -->
+
+    <record id="account_financial_report_liabilities_view0_balance_9" model="account.report.expression">
+        <field name="label">balance_currency</field>
+        <field name="engine">aggregation</field>
+        <field name="formula">PREV_YEAR_EARNINGS.balance_domain +
+            PREV_YEAR_EARNINGS.allocated_earnings - CURR_YEAR_EARNINGS.balance</field>
+        <field name="report_line_id"
+            ref="account_reports.account_financial_previous_year_earnings0" />
+    </record>
+
+    <record id="account_financial_report_liabilities_view0_balance_10" model="account.report.expression">
+        <field name="label">balance_currency</field>
+        <field name="engine">aggregation</field>
+        <field name="formula">L.balance + EQ.balance</field>
+        <field name="green_on_positive" eval="False"/>
+        <field name="report_line_id"
+            ref="account_reports.account_financial_report_liabilities_and_equity_view0" />
+    </record>
+
+
+</odoo>

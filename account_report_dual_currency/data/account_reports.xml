@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="account_reports.balance_sheet" model="account.report">
+        <field name="filter_currency" eval="True" />
+    </record>
+
+    <record id="account_reports.profit_and_loss" model="account.report">
+        <field name="filter_currency" eval="True" />
+    </record>
+
+    <record id="account_reports.cash_flow_report" model="account.report">
+        <field name="filter_currency" eval="True" />
+    </record>
+
+    <!-- <record id="account_reports.generic_tax_report" model="account.report">
+        <field name="filter_currency" eval="True" />
+    </record> -->
+
+    <record id="account_reports.executive_summary" model="account.report">
+        <field name="filter_currency" eval="True" />
+    </record>
+
+</odoo>

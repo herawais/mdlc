@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="sr_search_template" inherit_id="account_reports.search_template">
+            <xpath expr="//div[@id='variant_choice_option']" position="after">
+                <div id="aged_choice_option" class="btn-group dropdown">
+                    <t t-call="account_report_dual_currency.search_template_currency" />
+                </div>
+            </xpath>
+        </template>
+
+        <template id="search_template_currency">
+            <t t-if="len(options['available_currency']) > 1">
+                <button type="button" class="o-no-caret btn btn-secondary dropdown-toggle"
+                    data-bs-toggle="dropdown">
+                    <span class="fa fa-book" /> Currency: <t t-set="selected_report"
+                        t-value="[opt for opt in options['available_currency'] if opt['id'] == options['currency']][0]" />
+                    <t t-out="selected_report['name']" />
+                </button>
+                <div class="dropdown-menu o_filter_menu" role="menu">
+                    <t t-foreach="options['available_currency']" t-as="variant">
+                        <a role="menuitem"
+                            class="dropdown-item js_account_reports_one_choice_filter"
+                            t-att-title="variant['name']" t-att-data-id="variant['id']"
+                            data-filter="currency">
+                            <t t-out="variant['name']" />
+                        </a>
+                    </t>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>
