@@ -11,4 +11,6 @@ class PosSession(models.Model):
     def _loader_params_res_partner(self):
         res = super()._loader_params_res_partner()
         res["search_params"]["fields"].append("pos_comment")
+        res["search_params"]["fields"].append("identification_id")
+        res["search_params"]["fields"].append("rif")
         return res
