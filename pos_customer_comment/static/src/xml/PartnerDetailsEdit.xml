@@ -24,6 +24,29 @@
                     placeholder="Comment"
                 />
             </div>
+            <div class="partner-detail partner-detail-identification_id">
+                <span class="label">Identification Id</span>
+                <input
+                    required
+                    class="detail"
+                    name="identification_id"
+                    t-model="changes.identification_id"
+                    t-on-change="captureChange"
+                    placeholder="Identification Id"
+                />
+            </div>
+            <div class="partner-detail partner-detail-rif">
+                <span class="label">RIF</span>
+                <input
+                    class="detail"
+                    name="rif"
+                    t-model="changes.rif"
+                    t-on-change="captureChange"
+                    placeholder="RIF"
+                />
+            </div>
+
+        
         </xpath>
     </t>
 
