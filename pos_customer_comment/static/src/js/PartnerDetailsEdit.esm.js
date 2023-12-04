@@ -9,6 +9,9 @@ const PartnerDetailsEditComment = (OriginalPartnerDetailsEdit) =>
             this.changes = {
                 ...this.changes,
                 pos_comment: this.props.partner.pos_comment || "",
+                identification_id: this.props.partner.identification_id || "",
+                rif: this.props.partner.rif || "",
+
             };
         }
     };
