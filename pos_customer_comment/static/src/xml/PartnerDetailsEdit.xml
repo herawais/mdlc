@@ -32,7 +32,7 @@
                     name="identification_id"
                     t-model="changes.identification_id"
                     t-on-change="captureChange"
-                    placeholder="Identification Id"
+                    placeholder="C.I."
                 />
             </div>
             <div class="partner-detail partner-detail-rif">
