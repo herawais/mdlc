@@ -25,7 +25,7 @@
                 />
             </div>
             <div class="partner-detail partner-detail-identification_id">
-                <span class="label">Identification Id</span>
+                <span class="label">C.I.</span>
                 <input
                     
                     class="detail"
